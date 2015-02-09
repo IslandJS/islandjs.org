@@ -1,0 +1,21 @@
+{
+  "name": "islandjs.github.io",
+  "version": "1.0.0",
+  "authors": [
+    "Andrew Waterman <awaterma@awaterma.net>"
+  ],
+  "description": "islandjs.org",
+  "main": "index.html",
+  "moduleType": [
+    "node"
+  ],
+  "license": "GPL3",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
