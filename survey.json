@@ -1,0 +1,9 @@
+"NodeSchool" : {
+    "Name" : "string",
+    "Email" : "string",
+    "Volunteering" : "[true, false]",
+    "Interests" : "string",
+    "Program" : "[true,false]",
+    "Years" : "number",
+    "Languages" : "['blockly','html','javascript','java','cpp','c','lisp','haskell','perl','ruby','python']"
+}

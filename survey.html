@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <link type="text/css" rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css"  media="screen,projection"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+</head>
+<style>
+/* label color */
+.input-field label {
+  color: #000;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+  color: #000;
+}
+/* label underline focus color */
+.input-field input[type=text]:focus {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* valid color */
+.input-field input[type=text].valid {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* invalid color */
+.input-field input[type=text].invalid {
+  border-bottom: 1px solid #000;
+  box-shadow: 0 1px 0 0 #000;
+}
+/* icon prefix focus color */
+.input-field .prefix.active {
+  color: #000;
+}
+
+</style>
+<body>
+  <div class="section no-pad-bot" id="index-banner">
+    <div class="container">
+      <div class="row">
+        <div class="row">
+          <div class="col s12 m6">
+            <div class="card blue-grey darken-1">
+              <div class="card-content white-text">
+                <span class="card-title">Survey</span>
+                <p>Please tell us about yourself so we can best plan for space,
+                   location, and timing.</p>
+                </div>
+            </div>
+          </div>
+        <form name="NodeSchool" class="col s12" enctype='application/json' action="http://localhost:3000/survey/test" method="POST">
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="mdi-action-account-circle prefix"></i>
+              <input id="firstName" type="text" class="validate">
+              <label for="firstName">First Name</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="mdi-communication-email prefix"></i>
+              <input id="email" type="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="mdi-hardware-computer prefix"></i>
+              <label for="volunteering">Interested in volunteering?</label>
+            </div>
+            <div class="input-field col s6">
+                <input name="volunteering" id="volunteering_yes" type="radio" />
+                <label for="volunteering_yes">Yes</label>
+                &nbsp;
+               <input name="volunteering" id="volunteering_no" type="radio" />
+               <label for="volunteering_no">No</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="mdi-hardware-computer prefix"></i>
+              <label for="interests">What interests you in Nodeschool?</label>
+            </div>
+            <div class="input-field col s6">
+              <textarea id="interests" rows="10" cols="12"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="mdi-hardware-computer prefix"></i>
+              <label for="program">Have you programmed before?</label>
+            </div>
+            <div class="input-field col s6">
+                <input name="program" type="radio" id="program_yes" />
+                <label for="program_yes">Yes</label>
+                &nbsp;
+                <input name="program" type="radio" id="program_no" />
+                <label for="program_no">No</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <i class="mdi-social-location-city prefix"></i>
+              <label for="experience">For how many years?</label>
+            </div>
+            <div class="input-field col s2">
+              <input name="experience" type="text" id="years" val="0"/>
+            </div>
+            <div class="input-field col s4">
+              <input type="range" id="ranger" min="0" max="25" />
+            </div>
+          </div>
+          <div class="row">
+          <div class="input-field col s6">
+              <i class="mdi-hardware-computer prefix"></i>
+              <label for="experience">In what languages?</label>
+          </div>
+          <div class="input-field col s6" id = "languages">
+        </div>
+        </div>
+        <div class="row">
+          <button class="btn blue-grey darken1 waves-effect waves-light" type="submit" name="action">Submit
+            <i class="mdi-content-send right"></i>
+          </button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div id="error-alert" class="modal hidden">
+    <div class="modal-content">
+      <h4>Error</h4>
+      <p id="text"></p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="bower_components/materialize/dist/js/materialize.min.js"></script>
+  <script>
+    var langs = [ 'blockly', 'html', 'javascript', 'cpp', 'c', 'lisp', 'haskell',
+    'perl', 'ruby', 'python']
+
+    /* Generate language checkboxes */
+    langs.forEach(function (lang) {
+      $('#languages')
+        .append("<p>\n")
+        .append("\t<input name='" + lang + "' type='checkbox' id='" + lang + "'/>")
+        .append("<label for ='" + lang + "'>" + lang + "</label>\n")
+        .append("</p>");
+    });
+
+    $('#ranger').on('input', function() {
+      $('#years').val($('#ranger').val());
+    });
+
+    $('#years').on('input', function() {
+      $('#ranger').val($('#years').val());
+    });
+
+    $("form").submit(function(event) {
+      event.preventDefault();
+      var results = {
+        Survey : 'NodeSchool',
+        Name : $('#firstName').val(),
+        Email : $('#email').val(),
+        Volunteering : $('#volunteering_yes').is(':checked') ? true : false,
+        Interests : $("#interests").val(),
+        Program : $("#program_yes").is(':checked') ? true : false,
+        Years : $("#years").val(),
+        Languages : langs.filter(function (lang) {
+          return eval("$('#"+ lang + "').is(':checked')") })
+      };
+
+      $.ajax({
+        url: "http://island.js.org:3000/survey/nodeschool",
+        type: "POST",
+        crossDomain: true,
+        data: JSON.stringify(results),
+            dataType: "json",
+            success: function (response) {
+              window.history.back();
+            },
+            error: function (xhr, status) {
+                alert("error: " + status);
+            }
+      });
+    });
+  </script>
+</body>
+</html>
