@@ -76,7 +76,7 @@
               <input name="experience" type="text" id="years" val="0"/>
             </div>
             <div class="input-field col s4">
-              <input type="range" id="ranger" min="0" max="25" />
+              <input type="range" id="ranger" min="0" max="10" />
             </div>
           </div>
           <div class="row">
@@ -105,6 +105,17 @@
       <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Ok</a>
     </div>
   </div>
+
+  <!-- Modal Structure -->
+<div id="error-modal" class="modal">
+  <div class="modal-content">
+    <h4>Error!</h4>
+    <p>There has been an unknown error while communicating with the server!</p>
+  </div>
+  <div class="modal-footer">
+    <a id="close-button" href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+  </div>
+</div>
 
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="bower_components/materialize/dist/js/materialize.min.js"></script>
@@ -138,25 +149,31 @@
         Volunteering : $('#volunteering_yes').is(':checked') ? true : false,
         Interests : $("#interests").val(),
         Program : $("#program_yes").is(':checked') ? true : false,
-        Years : $("#years").val(),
+        Years : new Number($("#years").val()),
         Languages : langs.filter(function (lang) {
           return eval("$('#"+ lang + "').is(':checked')") })
       };
 
       $.ajax({
-        url: "http://island.js.org:3000/survey/nodeschool",
+        url: "http://islandjs.org:3000/survey/spring",
         type: "POST",
         crossDomain: true,
         data: JSON.stringify(results),
             dataType: "json",
             success: function (response) {
+              // Write a cookie to remove the Survey button?
               window.history.back();
             },
             error: function (xhr, status) {
-                alert("error: " + status);
+              $('#error-modal').openModal();
             }
       });
     });
+
+    $('#close-button').on('click', function() {
+      window.history.back();
+    });
+
   </script>
 </body>
 </html>
