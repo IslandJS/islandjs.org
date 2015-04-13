@@ -2,6 +2,7 @@
 <html>
 <head>
   <link type="text/css" rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/islandjs.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 </head>
 <body>
@@ -14,9 +15,8 @@
           Nodeschool for Bainbridge Island
         </h5>
       </div>
-      <!-- Need a plan to handle display of the survey button -->
-      <div class="row center">
-        <a href="survey.html" id="download-button" class="btn-large waves-effect waves-light blue-grey">
+      <div id="survey" class="row center hiddendiv">
+        <a href="survey.html" id="who" class="btn-large waves-effect waves-light blue-grey">
           Who are you?
           </a>
       </div>
@@ -110,6 +110,18 @@
     </div>
   </footer>
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="bower_components/jquery-cookie/jquery.cookie.js"></script>
   <script type="text/javascript" src="bower_components/materialize/dist/js/materialize.min.js"></script>
+  <script>
+    var surveyCookie;
+
+    if(localStorage) {
+      surveyCookie = localStorage.getItem('survey');
+    } else {
+      surveyCookie = $.cookie('survey')
+    }
+
+    if (!surveyCookie) $('#survey').removeClass('hiddendiv');
+  </script>
 </body>
 </html>

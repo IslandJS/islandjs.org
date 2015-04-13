@@ -21,12 +21,14 @@
           </div>
         <form name="NodeSchool" class="col s12" enctype='application/json' action="#" method="POST">
           <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12">
               <i class="mdi-action-account-circle prefix"></i>
               <input id="firstName" type="text" class="validate">
               <label for="firstName">First Name</label>
             </div>
-            <div class="input-field col s6">
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
               <i class="mdi-communication-email prefix"></i>
               <input id="email" type="email" class="validate">
               <label for="email">Email</label>
@@ -51,7 +53,7 @@
               <label for="interests">What interests you in Nodeschool?</label>
             </div>
             <div class="input-field col s6">
-              <textarea id="interests" rows="10" cols="12"></textarea>
+              <textarea id="interests" rows="15" cols="12"></textarea>
             </div>
           </div>
           <div class="row">
@@ -118,6 +120,7 @@
 </div>
 
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="bower_components/jquery-cookie/jquery.cookie.js"></script>
   <script type="text/javascript" src="bower_components/materialize/dist/js/materialize.min.js"></script>
   <script>
     var langs = [ 'blockly', 'html', 'javascript', 'cpp', 'c', 'lisp', 'haskell',
@@ -155,14 +158,18 @@
       };
 
       $.ajax({
-        url: "http://islandjs.org:3000/survey/spring",
+        url: "http://localhost:3000/survey/spring",
         type: "POST",
         crossDomain: true,
         data: JSON.stringify(results),
             dataType: "json",
             success: function (response) {
-              // Write a cookie to remove the Survey button?
-              window.history.back();
+              if (localStorage) {
+                localStorage.setItem('survey', 'completed');
+              } else {
+                $.cookie('survey', 'completed');
+              }
+              window.history.back().reload();
             },
             error: function (xhr, status) {
               $('#error-modal').openModal();
