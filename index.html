@@ -2,6 +2,7 @@
 <html>
 <head>
   <link type="text/css" rel="stylesheet" href="bower_components/materialize/dist/css/materialize.min.css"  media="screen,projection"/>
+  <link type="text/css" rel="stylesheet" href="css/islandjs.css"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 </head>
 <body>
@@ -14,8 +15,8 @@
           Nodeschool for Bainbridge Island
         </h5>
       </div>
-      <div class="row center">
-        <a href="survey.html" id="download-button" class="btn-large waves-effect waves-light blue-grey">
+      <div id="survey" class="row center hiddendiv">
+        <a href="survey.html" id="who" class="btn-large waves-effect waves-light blue-grey">
           Who are you?
           </a>
       </div>
@@ -79,9 +80,8 @@
           <p class="grey-text text-lighten-4">
             We are a group of programmers, enthusiasts and individuals working
              to empower communities through open source software and JavaScript
-             programming! Get involved by contacting us at
-            <a class="white-text" href="mailto:info@islandjs.org">
-              info@islandjs.org</a> or like our <a class="grey-text text-lighten-2"
+             programming! Get involved by joining our Nodeschool Repo or 
+             just liking our <a class="grey-text text-lighten-2"
                 href="http://www.facebook.com/IslandJS">Facebook page.</a>
             </p>
         </div>
@@ -117,7 +117,19 @@
     </div>
   </footer>
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="bower_components/jquery-cookie/jquery.cookie.js"></script>
   <script type="text/javascript" src="bower_components/materialize/dist/js/materialize.min.js"></script>
+  <script>
+    var surveyCookie;
+
+    if(localStorage) {
+      surveyCookie = localStorage.getItem('survey');
+    } else {
+      surveyCookie = $.cookie('survey')
+    }
+
+    if (!surveyCookie) $('#survey').removeClass('hiddendiv');
+  </script>
 </body>
 
 <script>
