@@ -27,6 +27,7 @@ ol li {
   list-style:none
 }
 
-.map-canvas {
+#map-canvas {
   width: 100%;
+  height: 400px;
 }
