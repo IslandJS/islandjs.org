@@ -8,7 +8,6 @@
 <body>
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
-      <br><br>
       <h1 class="header center teal-text">IslandJS</h1>
       <div class="row center">
         <h5 class="header col s12 light">
@@ -20,13 +19,26 @@
           Who are you?
           </a>
       </div>
-      <div class="row center">
-          <span>Upcoming Event<br /><br />
-          Bainbridge Public Library<br />
-          Meeting Room<br />
-          <strong>May 23, 2015 @ 9am - 12pm</strong></span><br /><br />
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2688.5330732688285!2d-122.52054199999996!3d47.635207000000015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x54903ea4746c8b79%3A0x1b8893b1d2e57ad1!2sBainbridge+Public+Library!5e0!3m2!1sen!2sus!4v1429641698912" width="600" height="450" frameborder="0" style="border:0"></iframe>
+      <div class="center">
+      <div class="row">
+        <div class="col s8 offset-s2">
+          <div class="card" id="directions">
+            <div class="card-image" id="map-div">
+              <span class="card-title">Bainbridge Public Library</span>
+              <div id="map-canvas" class="s12"></div>
+            </div>
+            <div id="card-content" class="card-content2 center">
+              <h4>Bainbridge Public Library</h4>
+              <h4>Meeting Room</h4>
+              <h4>May 23, 2015 @ 9am - 12pm</h4>
+            </div>
+            <div class="card-action center">
+              <a id='directions-link' style="text-align: right" href="#">Directions</a>
+            </div>
+          </div>
+        </div>
       </div>
+    </div>
     </div>
   </div>
   <div class="container">
@@ -79,7 +91,7 @@
           <p class="grey-text text-lighten-4">
             We are a group of programmers, enthusiasts and individuals working
              to empower communities through open source software and JavaScript
-             programming! Get involved by joining our Nodeschool Repo or 
+             programming! Get involved by joining our Nodeschool Repo or
              just liking our <a class="grey-text text-lighten-2"
                 href="http://www.facebook.com/IslandJS">Facebook page.</a>
             </p>
@@ -118,6 +130,7 @@
   <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
   <script type="text/javascript" src="bower_components/jquery-cookie/jquery.cookie.js"></script>
   <script type="text/javascript" src="bower_components/materialize/dist/js/materialize.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
   <script>
     var surveyCookie;
 
@@ -128,6 +141,29 @@
     }
 
     if (!surveyCookie) $('#survey').removeClass('hiddendiv');
+
+    /* Map */
+    var map;
+    function initialize() {
+      var school = [47.635241,-122.520530]
+      var mapOptions = {
+          zoom: 16,
+          center: new google.maps.LatLng(47.635241, -122.520530)
+      };
+
+      map = new google.maps.Map(document.getElementById('map-canvas'),
+        mapOptions);
+
+      var marker = new google.maps.Marker({
+        map: map,
+        title: 'IslandJS/Nodeschool'
+      });
+
+      marker.setPosition(new google.maps.LatLng(school[0], school[1]));
+      $('#directions-link').attr('href',"https://www.google.com/maps/dir/Current+Location/" +
+        school[0] + "," + school[1]);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
   </script>
 </body>
 

@@ -22,3 +22,11 @@
 .hidden {
   visibility: none;
 }
+
+ol li {
+  list-style:none
+}
+
+.map-canvas {
+  width: 100%;
+}
