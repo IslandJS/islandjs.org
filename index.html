@@ -35,7 +35,7 @@
               </ol>
             </div>
             <div class="card-action">
-              <a href="#">Directions</a>
+              <a id='directions-link' href="#">Directions</a>
             </div>
           </div>
         </div>
@@ -161,6 +161,7 @@
         title: 'NodeSchool'
       });
       marker.setPosition(new google.maps.LatLng(school[0], school[1]));
+      $('#directions-link').attr('href','https://www.google.com/maps/dir/Current+Location/' + school[0] + ',' + school [1]);
     }
     google.maps.event.addDomListener(window, 'load', initialize);
   </script>
