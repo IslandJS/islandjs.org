@@ -15,35 +15,48 @@
         </h5>
       </div>
       <div id="survey" class="row center hiddendiv">
-        <a href="survey.html" id="who" class="btn-large waves-effect waves-light blue-grey">
+        <a href="survey.html" id="who" class="btn-large waves-effect waves-light blue-grey lighten-1">
           Who are you?
           </a>
       </div>
-      <div class="center">
+  </div>
+  <div class="parallax-container">
+    <div class="parallax">
+        <img src="img/intl-day-group-photo.png">
+    </div>
+  </div>
+  <div class="container">
+    <div class="center">
       <div class="row">
-        <div class="col l12 s12">
-          <div class="card" id="directions">
-            <div class="card-image s12" id="map-div">
-              <span class="card-title">Bainbridge Public Library</span>
+        <div class="center">
+          <div class="card deep-orange" id="announcements">
+            <div class="card-image s6" id="map-div">
+              <span class="card-title white-text">Our Meetup</span>
             </div>
-            <div class="card-content">
-              <div id="map-canvas"></div>
-                <a class="teal-text darken-text-2" href="http://www.meetup.com/IslandJS-Nodeschool/events/222090027/">
-                    <h5>Upcoming Event</h5>
-                    <h6>Bainbridge Public Library</h6>
-                    <h6>Meeting Room</h6>
-                    <h6>May 23, 2015 @ 9am - 12pm</h6>
-                </a>
-              </ol>
+            <div class="card-content white-text">
+                 We're considering July 11 for the next NodeSchool. Please stay
+                 tuned for updates on location and time.
+                 <p>
+                     <em>Hope to see everyone
+                     back for another workshop!</em>
+                 </p>
             </div>
             <div class="card-action">
-              <a id='directions-link' href="#" class="grey-text">Directions</a>
+              <a id='meetup-link' href="http://www.meetup.com/IslandJS-Nodeschool"
+                class="white-text">
+                <em>Click Here for Our Meetup Group</em>
+              </a>
             </div>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="parallax-container">
+    <div class="parallax">
+        <img src="img/intl-day-focused.png">
     </div>
+  </div>
   </div>
   <div class="container">
     <div class="section">
@@ -146,26 +159,9 @@
 
     if (!surveyCookie) $('#survey').removeClass('hiddendiv');
 
-    /* Map */
-    var map;
-    function initialize() {
-      var school = [47.635241,-122.520530]
-      var mapOptions = {
-          zoom: 16,
-          center: new google.maps.LatLng(47.635241, -122.520530)
-      };
-      map = new google.maps.Map(document.getElementById('map-canvas'),
-        mapOptions);
-      $('#map-canvas').addClass('center');
-
-      var marker = new google.maps.Marker({
-        map: map,
-        title: 'NodeSchool'
-      });
-      marker.setPosition(new google.maps.LatLng(school[0], school[1]));
-      $('#directions-link').attr('href','https://www.google.com/maps/dir/Current+Location/' + school[0] + ',' + school [1]);
-    }
-    google.maps.event.addDomListener(window, 'load', initialize);
+    $(document).ready(function(){
+     $('.parallax').parallax();
+    });
   </script>
 </body>
 
