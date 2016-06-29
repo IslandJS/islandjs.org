@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "HTML pages for islandjs.org website. Part of Nodeschool Bainbridge Island.",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "stage": "curl "
-  },
   "author": "\"Andrew Waterman\" <awaterma@awaterma.net>",
   "license": "GPL3",
   "dependencies": {
