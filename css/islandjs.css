@@ -1,3 +1,14 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  min-width: 300px;
+}
+.footer-about-link {
+  color: #ffcc80;
+}
+.group-photo {
+  height: 70%;
+}
 .input-field label {
   color: #000;
 }
@@ -22,12 +33,9 @@
 .hidden {
   visibility: none;
 }
-
 ol li {
   list-style:none
 }
-
 #map-canvas {
-  width: 100%;
   height: 400px;
 }
