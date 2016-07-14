@@ -3,11 +3,11 @@ body {
   font-size: 16px;
   min-width: 300px;
 }
+.card-title {
+  vertical-align: text-top;
+}
 .footer-about-link {
   color: #ffcc80;
-}
-.group-photo {
-  height: 70%;
 }
 .input-field label {
   color: #000;
@@ -29,12 +29,6 @@ body {
 }
 .input-field .prefix.active {
   color: #000;
-}
-.hidden {
-  visibility: none;
-}
-ol li {
-  list-style:none
 }
 #map-canvas {
   height: 400px;
