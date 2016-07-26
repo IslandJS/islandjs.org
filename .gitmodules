@@ -1,0 +1,3 @@
+[submodule "nodeschool-bainbridge"]
+	path = nodeschool-bainbridge
+	url = https://github.com/nodeschool/bainbridge.git
